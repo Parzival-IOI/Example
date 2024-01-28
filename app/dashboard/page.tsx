@@ -21,7 +21,7 @@ export default async function Page() {
     totalPendingInvoices,
   } = await fetchCardData();
   return (
-    <main>
+    <main className='h-full'>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>
@@ -34,11 +34,9 @@ export default async function Page() {
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart />
         </Suspense>
-        {/* <RevenueChart revenue={revenue}  /> */}
         <Suspense fallback={<LatestInvoicesSkeleton />}>
           <LatestInvoices />
         </Suspense>
-        {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
       </div>
     </main>
   );

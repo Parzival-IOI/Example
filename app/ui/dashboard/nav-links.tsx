@@ -13,12 +13,9 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
-  {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
-    icon: DocumentDuplicateIcon,
-  },
+  { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  { name: 'Employee', href: '/dashboard/employees', icon: UserGroupIcon},
 ];
 
 export default function NavLinks() {
@@ -29,19 +26,10 @@ export default function NavLinks() {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <Link
-                key={link.name}
-                href={link.href}
-                className={clsx(
-                'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
-                {
-                    'bg-sky-100 text-blue-600': pathname === link.href,
-                },
-                )}
-            >
-                <LinkIcon className="w-6" />
-                <p className="hidden md:block">{link.name}</p>
-            </Link>
+          <Link key={link.name} href={link.href} className={`w-full flex justify-start items-center gap-4 rounded-lg p-4 ${pathname === link.href ? 'dark:text-slate-50 text-slate-950 dark:bg-slate-500 bg-slate-800' : 'dark:text-slate-300 text-slate-950 dark:bg-slate-700 bg-slate-300 hover:dark:bg-slate-500 hover:bg-slate-800 hover:dark:text-slate-50 hover:text-slate-950 transition-colors duration-300' }`} >
+            <LinkIcon className="w-6" />
+            <p className="">{link.name}</p>
+          </Link>
         );
       })}
     </>
