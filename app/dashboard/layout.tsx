@@ -4,7 +4,7 @@ import { signOut } from '@/auth';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col md:flex-row overflow-hidden relative p-0 m-0 dark:bg-slate-800 bg-white">
+    <div className="flex h-screen flex-col md:flex-row overflow-x-hidden relative p-0 m-0 dark:bg-slate-800 bg-white">
       <div className="w-full flex-none md:w-64 dark:bg-slate-950 bg-white">
         <SideNav />
       </div>
