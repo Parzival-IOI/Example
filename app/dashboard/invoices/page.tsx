@@ -19,7 +19,7 @@ export default async function Page({
 
 
   return (
-    <div className="w-full">
+    <div className="w-full py-2">
       <div className="flex w-full items-center justify-between">
         <div className=' px-4 py-2 rounded-md bg-slate-100 shadow-sm'>
           <h1 className="text-lg hover:text-sky-500">Invoices</h1>
