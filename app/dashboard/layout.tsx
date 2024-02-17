@@ -1,4 +1,4 @@
-import SideNav from '@/app/ui/dashboard/sidenav';
+import SideNav from '@/components/ui/dashboard/sidenav';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { signOut } from '@/auth';
  

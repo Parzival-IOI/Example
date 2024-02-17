@@ -1,15 +1,15 @@
-import { Card } from '@/app/ui/dashboard/cards';
-import CardWrapper from '@/app/ui/dashboard/cards';
-import RevenueChart from '@/app/ui/dashboard/revenue-chart';
-import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
-import { lusitana } from '@/app/ui/fonts';
+import { Card } from '@/components/ui/dashboard/cards';
+import CardWrapper from '@/components/ui/dashboard/cards';
+import RevenueChart from '@/components/ui/dashboard/revenue-chart';
+import LatestInvoices from '@/components/ui/dashboard/latest-invoices';
+import { lusitana } from '@/components/ui/fonts';
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/components/lib/data';
 import { Suspense } from 'react';
 import {
   RevenueChartSkeleton,
   LatestInvoicesSkeleton,
   CardsSkeleton,
-} from '@/app/ui/skeletons';
+} from '@/components/ui/skeletons';
  
 export default async function Page() {
   const revenue = await fetchRevenue();
