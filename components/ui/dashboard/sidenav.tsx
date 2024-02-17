@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import NavLinks from '@/app/ui/dashboard/nav-links';
-import MobileNav from '@/app/ui/dashboard/mobile-nav';
+import NavLinks from '@/components/ui/dashboard/nav-links';
+import MobileNav from '@/components/ui/dashboard/mobile-nav';
 
 export default function SideNav() {
   return (

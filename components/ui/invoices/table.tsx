@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredInvoices } from '@/app/lib/data';
+import { formatDateToLocal, formatCurrency } from '@/components/lib/utils';
+import { fetchFilteredInvoices } from '@/components/lib/data';
 import Pagination from './pagination';
-import { fetchInvoicesPages } from '@/app/lib/data';
+import { fetchInvoicesPages } from '@/components/lib/data';
 
 
 export default async function InvoicesTable({
