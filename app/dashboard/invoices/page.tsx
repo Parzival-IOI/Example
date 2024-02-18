@@ -2,7 +2,6 @@ import Pagination from '@/components/ui/invoices/pagination';
 import Search from '@/components/ui/search';
 import Table from '@/components/ui/invoices/table';
 import { CreateInvoice } from '@/components/ui/invoices/buttons';
-import { lusitana } from '@/components/ui/fonts';
 import { InvoicesTableSkeleton } from '@/components/ui/skeletons';
 import { Suspense } from 'react';
  

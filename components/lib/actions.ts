@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
+
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string({
@@ -127,14 +128,29 @@ export async function updateInvoice(
 }
 
 export async function deleteInvoice(id: string) {
-  
-  throw new Error('Failed to Delete Invoice');
-  
   try {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath('/dashboard/invoices');
     return { message: 'Deleted Invoice.' };
   } catch (error) {
     return { message: 'Database Error: Failed to Delete Invoice.' };
+  }
+}
+
+
+
+export async function deleteSchedule(id: string) {
+  let base64 = require('base-64');
+  const login = process.env.LOGIN;
+  const password = process.env.PASSWORD;
+  const deleteAPI = process.env.DELETE_API + id;
+  try {
+    const res = fetch(deleteAPI ,{
+      headers: new Headers({
+        "Authorization": `Basic ${base64.encode(`${login}:${password}`)}`
+      }),
+    })
+  } catch (error) {
+    return { message: 'Database Error: Failed to Delete Schedule.' };
   }
 }
