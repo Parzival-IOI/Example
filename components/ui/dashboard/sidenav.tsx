@@ -16,7 +16,7 @@ export default function SideNav() {
         </div>
         <MobileNav />
       </div>
-      <div className="hidden lg:flex flex-col justify-start items-center gap-2 py-6 px-2">
+      <div className="hidden lg:flex flex-col justify-start items-center gap-2 pb-6 px-2">
         <NavLinks />
       </div>
     </div>

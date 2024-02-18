@@ -4,12 +4,12 @@ import { signOut } from '@/auth';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col md:flex-row overflow-x-hidden relative p-0 m-0 dark:bg-slate-800 bg-white">
-      <div className="w-full flex-none md:w-64 dark:bg-slate-950 bg-white">
+    <div className="flex h-screen flex-col md:flex-row overflow-x-hidden relative p-0 m-0 ">
+      <div className="w-full flex-none md:w-48 dark:bg-slate-950 bg-white">
         <SideNav />
       </div>
       <div className="flex-grow">
-        <div className="hidden lg:flex w-full h-5 md:h-12 lg:h-24 dark:bg-slate-950 bg-white p-3 justify-between items-center ">
+        <div className="hidden lg:flex w-full h-5 md:h-14 lg:h-18 dark:bg-slate-950 bg-white p-3 justify-between items-center ">
           <div></div>
           <form
             action={async () => {
@@ -17,13 +17,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               await signOut();
             }}
           >
-            <button className="flex justify-center items-center gap-2 dark:bg-slate-600 dark:hover:bg-slate-500 py-2 px-4 rounded-md">
-              <PowerIcon className="w-6" />
+            <button className="flex justify-evenly gap-2 hover:bg-orange-500/50 px-3 py-2 rounded-md">
+              <PowerIcon className="w-5" />
               <div className="hidden md:block">Sign Out</div>
             </button>
           </form>
         </div>
-        <div className='px-6 md:overflow-y-auto md:p-12 dark:bg-slate-800'>
+        <div className='px-6 md:overflow-y-auto md:px-4 md:py-8'>
           {children}
         </div>
       </div>
