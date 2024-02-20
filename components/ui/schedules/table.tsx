@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { UpdateSchedule, DeleteSchedule } from '@/components/ui/schedules/buttons';
 import { formatDateToLocal, formatCurrency } from '@/components/lib/utils';
 import { fetchSchedules } from '@/components/lib/scheduleAction';
+import { scheduleType } from '@/components/lib/definitions';
 
 
 export default async function ScheduleTable({
@@ -11,14 +12,14 @@ export default async function ScheduleTable({
   query: string;
   currentPage: number;
 }) {
-  const schedules = await fetchSchedules();
+  const schedules: any = await fetchSchedules();
 
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-200 p-2 md:pt-0">
           <div className="md:hidden">
-            {schedules?.map((schedule) => (
+            {/* {schedules?.map((schedule : scheduleType) => (
               <div
                 key={schedule.id}
                 className="mb-2 w-full rounded-md bg-white p-4"
@@ -51,25 +52,22 @@ export default async function ScheduleTable({
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                  Customer
+                <th scope="col" className="px-4 py-5 font-medium">
+                  Class id
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Email
+                  Class Name
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Amount
+                  Generation
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Date
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Status
+                  Department
                 </th>
                 <th scope="col" className="relative py-3 pl-6 pr-3">
                   <span className="sr-only">Edit</span>
@@ -77,31 +75,22 @@ export default async function ScheduleTable({
               </tr>
             </thead>
             <tbody className="bg-white">
-              {schedules?.map((schedule) => (
+              {schedules.map((schedule : scheduleType) => (
                 <tr
                   key={schedule.id}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src={schedule.image_url}
-                        className="rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${schedule.name}'s profile picture`}
-                      />
-                      <p>{schedule.name}</p>
-                    </div>
+                  <td className="whitespace-nowrap px-5 py-3">
+                    {schedule.id}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {schedule.email}
+                    {schedule.class_name}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {formatCurrency(schedule.amount)}
+                    {schedule.generation}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(schedule.date)}
+                    {schedule.department}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">

@@ -84,3 +84,16 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export type scheduleType = {
+  id: string,
+  class_name: string,
+  generation: string,
+  department: string,
+  part_of_day: string,
+  day: string,
+  period: number,
+  course: string,
+  teacher_id: string,
+  teacher_name: string,
+}

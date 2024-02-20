@@ -9,11 +9,11 @@ export async function fetchSchedules() {
             "Authorization": `Basic ${base64.encode(`${login}:${password}`)}`
         }),
       });
-      const schedule = await data;
-      console.log(data);
+      const schedule = await data.json();
+      console.log(schedule);
       return schedule;
     } catch (err) {
       console.error('Database Error:', err);
-      throw new Error('Failed to fetch all customers.');
+      throw new Error('Failed to fetch all Schedules.');
     }
   }
