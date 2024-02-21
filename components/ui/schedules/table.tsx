@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { UpdateSchedule, DeleteSchedule } from '@/components/ui/schedules/buttons';
+import { UpdateSchedule, DeleteSchedule, ViewSchedule } from '@/components/ui/schedules/buttons';
 import { formatDateToLocal, formatCurrency } from '@/components/lib/utils';
 import { fetchSchedules } from '@/components/lib/scheduleAction';
-import { scheduleType } from '@/components/lib/definitions';
+import { classInfo } from '@/components/lib/definitions';
 
 
 export default async function ScheduleTable({
@@ -57,9 +57,6 @@ export default async function ScheduleTable({
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 font-medium">
-                  Class id
-                </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Class Name
                 </th>
@@ -75,16 +72,13 @@ export default async function ScheduleTable({
               </tr>
             </thead>
             <tbody className="bg-white">
-              {schedules.map((schedule : scheduleType) => (
+              {schedules.map((schedule : classInfo) => (
                 <tr
-                  key={schedule.id}
+                  key={schedule.name}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap px-5 py-3">
-                    {schedule.id}
-                  </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {schedule.class_name}
+                    {schedule.name}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {schedule.generation}
@@ -94,8 +88,9 @@ export default async function ScheduleTable({
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      <UpdateSchedule id={schedule.id} />
-                      <DeleteSchedule id={schedule.id} />
+                      <ViewSchedule name={schedule.name} generation={schedule.generation} department={schedule.department}/>
+                      <UpdateSchedule id={schedule.name} />
+                      <DeleteSchedule id={schedule.name} />
                     </div>
                   </td>
                 </tr>

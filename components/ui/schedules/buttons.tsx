@@ -1,4 +1,4 @@
-import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { EyeIcon, PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { deleteSchedule } from '@/components/lib/actions';
 
@@ -35,5 +35,16 @@ export function DeleteSchedule({ id }: { id: string }) {
         <TrashIcon className="w-4" />
       </button>
     </form>
+  );
+}
+
+export function ViewSchedule({ name , department, generation }: { name: string, department: string, generation: string }) {
+  return (
+    <Link
+      href={`/dashboard/schedules/view/${name}/${generation}/${department}`}
+      className="rounded-md border p-2 hover:bg-gray-100"
+    >
+      <EyeIcon className="w-5" />
+    </Link>
   );
 }
