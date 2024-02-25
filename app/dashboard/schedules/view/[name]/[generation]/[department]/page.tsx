@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 const page = async ({ params }: { params: { name: string, generation:string, department:string } }) => {
     const data = await fetchViewSchedules(params);
-    console.log(data);
+    console.log(data.json());
     if(!data) {
         notFound();
     }
@@ -26,7 +26,8 @@ const page = async ({ params }: { params: { name: string, generation:string, dep
                 </tr>
             </thead>
             <tbody>
-                {data.map((d: scheduleType) => {
+                {JSON.stringify(data)}
+                {/* {data.map((d: scheduleType) => {
                     return (
                         <tr key={d.id}>
                             <td>
@@ -61,7 +62,7 @@ const page = async ({ params }: { params: { name: string, generation:string, dep
                             </td>
                         </tr>
                     )
-                })}   
+                })}    */}
             </tbody>
         </table>
     </main>

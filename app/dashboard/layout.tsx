@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </button>
           </form>
         </div>
-        <div className='px-6 md:overflow-y-auto md:px-4 md:py-8'>
+        <div className='px-6 md:overflow-y-auto md:px-4 '>
           {children}
         </div>
       </div>

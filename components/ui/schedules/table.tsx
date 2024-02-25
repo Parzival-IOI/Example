@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import { UpdateSchedule, DeleteSchedule, ViewSchedule } from '@/components/ui/schedules/buttons';
-import { formatDateToLocal, formatCurrency } from '@/components/lib/utils';
 import { fetchSchedules } from '@/components/lib/scheduleAction';
 import { classInfo } from '@/components/lib/definitions';
+import Search from "@/components/ui/schedules/search";
+import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
 
 
 export default async function ScheduleTable({
@@ -15,55 +15,33 @@ export default async function ScheduleTable({
   const schedules: any = await fetchSchedules();
 
   return (
-    <div className="mt-6 flow-root">
-      <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-200 p-2 md:pt-0">
-          <div className="md:hidden">
-            {/* {schedules?.map((schedule : scheduleType) => (
-              <div
-                key={schedule.id}
-                className="mb-2 w-full rounded-md bg-white p-4"
-              >
-                <div className="flex items-center justify-between border-b pb-4">
-                  <div>
-                    <div className="mb-2 flex items-center">
-                      <Image
-                        src={schedule.image_url}
-                        className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${schedule.name}'s profile picture`}
-                      />
-                      <p>{schedule.name}</p>
-                    </div>
-                    <p className="text-sm text-gray-500">{schedule.email}</p>
-                  </div>
-                </div>
-                <div className="flex w-full items-center justify-between pt-4">
-                  <div>
-                    <p className="text-xl font-medium">
-                      {formatCurrency(schedule.amount)}
-                    </p>
-                    <p>{formatDateToLocal(schedule.date)}</p>
-                  </div>
-                  <div className="flex justify-end gap-2">
-                    <UpdateSchedule id={schedule.id} />
-                    <DeleteSchedule id={schedule.id} />
-                  </div>
-                </div>
-              </div>
-            ))} */}
+    <div className="flow-root">
+      <div className="inline-block align-middle w-full">
+        <div className='px-4 py-3 rounded-t-md dark:bg-slate-900 bg-slate-100 flex justify-between'>
+          <div className='text-md w-6 aspect-square flex justify-center items-center'>
+            <DocumentTextIcon className='text-inherit'/>
           </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
+          <div>
+            <Search placeholder='Search Schedule'/>
+          </div>
+        </div>
+        <div className="rounded-b-lg p-4 md:pt-0 h-[75vh] w-full dark:bg-slate-800 bg-slate-100 overflow-y-scroll">
+          <div className="md:hidden">
+          </div>
+          <table className="hidden md:table w-full ">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 pt-4 pb-2 font-medium ">
+                  N
+                  <sup>o</sup>
+                </th>
+                <th scope="col" className="px-3 pt-4 pb-2 font-medium">
                   Class Name
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 pt-4 pb-2 font-medium">
                   Generation
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 pt-4 pb-2 font-medium">
                   Department
                 </th>
                 <th scope="col" className="relative py-3 pl-6 pr-3">
@@ -71,22 +49,25 @@ export default async function ScheduleTable({
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white">
-              {schedules.map((schedule : classInfo) => (
+            <tbody>
+              {schedules.map((schedule : classInfo, index : number) => (
                 <tr
                   key={schedule.name}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-nowrap px-3 py-2">
+                    {index + 1}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2">
                     {schedule.name}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-nowrap px-3 py-2">
                     {schedule.generation}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-nowrap px-3 py-2">
                     {schedule.department}
                   </td>
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                  <td className="whitespace-nowrap py-2 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
                       <ViewSchedule name={schedule.name} generation={schedule.generation} department={schedule.department}/>
                       <UpdateSchedule id={schedule.name} />
@@ -97,10 +78,6 @@ export default async function ScheduleTable({
               ))}
             </tbody>
           </table>
-          <div className="flex justify-end items-center px-4 py-4">
-            <div className="px-4 py-2 flex justify-end items-center bg-slate-100 rounded-md border border-slate-300" >
-            </div>
-          </div>
         </div>
       </div>
     </div>

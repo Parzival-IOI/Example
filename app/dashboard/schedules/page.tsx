@@ -1,5 +1,4 @@
-import { CreateInvoice } from "@/components/ui/invoices/buttons";
-import Search from "@/components/ui/search";
+
 import { Suspense } from "react";
 import Table from '@/components/ui/schedules/table';
 
@@ -17,14 +16,12 @@ export default async function Page({
 
 
   return (
-    <div className="w-full">   
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-2">
-        <Search placeholder="Search invoices..." />
-        <CreateInvoice />
+    <div className="w-full h-full">
+      <div className="p-4">
+        <Suspense key={query + currentPage} fallback={<></>}>
+          <Table query={query} currentPage={currentPage} />
+        </Suspense>
       </div>
-       <Suspense key={query + currentPage} fallback={<></>}>
-        <Table query={query} currentPage={currentPage} />
-      </Suspense>
     </div>
   );
 }
